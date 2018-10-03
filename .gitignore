@@ -1,0 +1,22 @@
+# IDE Stuff
+.idea
+.idea_modules
+*.iml
+
+# SBT Stuff (Start with ! to exclude specific files)
+project/**
+!project/build.properties
+!project/plugins.sbt
+
+# OS, JVM, Java, Scala Stuff
+target
+*.class
+.classpath
+.java_version
+.project
+.settings
+.DS_Store
+
+# App Stuff
+logs
+RUNNING_PID
