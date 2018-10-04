@@ -1,5 +1,5 @@
 ### What are Type Classes?
-> Type classes are a programming pa􏰁ttern originati􏰀ng in Haskell (1). They allow us to extend existi􏰀ng libraries with new func􏰀tionality, without using traditi􏰀onal inheritance, and without altering the original library source code.
+> Type classes are a programming pattern originating in Haskell (1). They allow us to extend existing libraries with new functionality, without using traditional inheritance, and without altering the original library source code.
 >
 > 1: The word 'class' doesn't strictly mean `class` in the Scala or Java sense
 
@@ -39,7 +39,10 @@ def equals(a: String, b: String): Boolean = a == b
 def equals(a: Double, b: Double): Boolean = a == b
 
 // For custom types, we can re-use `equals`.
-def equals(a: MyData, b: MyData): Boolean = equals(a.index, b.index) && equals(a.key, b.key) && equals(a.value, b.value)
+def equals(a: MyData, b: MyData): Boolean =
+  equals(a.index, b.index) &&
+  equals(a.key, b.key) &&
+  equals(a.value, b.value)
 
 // This is obviously tedious.
 equals(123, 123)      // Yields `true`
@@ -61,8 +64,10 @@ val intEquals: Equals[Int] = new Equals[Int] {
 // Easier, more syntactically pleasing versions of the `Equals` instances
 val stringEquals: Equals[String] =
   (a: String, b: String) => a == b
+
 val doubleEquals: Equals[Double] =
   (a: Double, b: Double) => a == b
+
 val myDataEquals: Equals[MyData] =
   (a: MyData, b: MyData) =>
     intEquals.===(a.index, b.index) &&
@@ -107,10 +112,13 @@ def =====[T: Equals](a: T, b: T): Boolean =
 // Let's define some implicit instances then
 implicit val int: Equals[Int] =
   (a: Int, b: Int) => a == b
+
 implicit val string: Equals[String] =
   (a: String, b: String) => a == b
+
 implicit val double: Equals[Double] =
   (a: Double, b: Double) => a == b
+
 implicit val myData: Equals[MyData] =
   (a: MyData, b: MyData) =>
     int.===(a.index, b.index) &&
@@ -123,4 +131,3 @@ implicit val myData: Equals[MyData] =
 ====("123", "124")
 ====(myData1, myData2)
 ```
-
