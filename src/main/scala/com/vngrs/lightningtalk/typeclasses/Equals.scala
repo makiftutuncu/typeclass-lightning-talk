@@ -1,7 +1,7 @@
 package com.vngrs.lightningtalk.typeclasses
 
 trait Equals[T] {
-  def ===(a: T, b: T): Boolean
+  def ===(a: T, b: T): Boolean;
 
   def =!=(a: T, b: T): Boolean = ! ===(a, b)
 }
